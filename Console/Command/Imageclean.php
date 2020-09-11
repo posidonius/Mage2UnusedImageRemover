@@ -88,7 +88,7 @@ class Imageclean extends Command
         } else {
             $output->writeln("Test Mode Only - Nothing deleted");
             if ($this->listMode) {
-                $this->listDeleteList($deleteList);
+                $this->listImageFiles($deleteList, $dbImages);
             }
         }
 
@@ -268,11 +268,17 @@ class Imageclean extends Command
         }
     }
 
-    private function listDeleteList($deleteList){
+    private function listImageFiles($deleteList, $dbImages){
         echo "Files marked for deletion:\n";
         foreach( $deleteList as $deleteFile ) {
             echo "$deleteFile\n";
         }
+
+        echo "Valid files to be kept:\n";        
+        foreach( $dbImages as $validFile ) {
+            echo "$validFile\n";
+        }
+        
     }
 
 
